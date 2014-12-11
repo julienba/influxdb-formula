@@ -2,10 +2,12 @@
 {% from "influxdb/map.jinja" import influxdb with context %}
 
 {% if influxdb["version"] is defined %}
-  {% set filename = "influxdb_" + influxdb['version'] + "_" + grains['osarch'] + ".deb" %}
+  {% set version =  influxdb['version'] %}
 {% else %}
-  {% set filename = "influxdb_latest" + grains['osarch'] + ".deb" %}
+  {% set version =  "latest" %}
 {% endif %}
+
+{% set filename = "influxdb_" + version + "_" + grains['osarch'] + ".deb" %}
 
 influxdb_package:
   cmd:
