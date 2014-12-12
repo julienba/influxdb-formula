@@ -13,7 +13,7 @@ influxdb_package:
   cmd:
     - run
     - name: wget -qO /tmp/{{ filename }} http://s3.amazonaws.com/influxdb/{{ filename }}
-    - onlyif: test -f /opt/influxdb/{{ version }}
+    - onlyif: test -f /opt/influxdb/versions/{{ version }}
 
 influxdb_install:
   pkg:
