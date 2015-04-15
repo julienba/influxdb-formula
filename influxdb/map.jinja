@@ -1,6 +1,6 @@
 {% set os_map = salt['grains.filter_by']({
     'Debian': {
-        'config': '/etc/influxdb/config.toml',
+        'config': '/opt/influxdb/shared/config.toml',
         'fullname': 'InfluxDB Service User',
         'home': '/opt/influxdb',
         'init_dir': '/etc/init.d',

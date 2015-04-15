@@ -14,7 +14,6 @@
 {% endif %}
 {% endif %}
 
-{% set filename = "influxdb_" + version + "_" + grains['osarch'] + ".deb" %}
 
 influxdb_package:
   cmd.run:
@@ -30,24 +29,16 @@ influxdb_install:
     - watch:
       - cmd: influxdb_package
 
+
 influxdb_config:
   file.managed:
     - name: {{ influxdb_settings.config }}
     - source: salt://influxdb/templates/config.toml.jinja
-    - user: root
-    - group: root
+    - user: influxdb
+    - group: influxdb
     - makedirs: True
     - dir_mode: 755
     - mode: 644
-    - template: jinja
-
-influxdb_init:
-  file.managed:
-    - name: {{ influxdb_settings.init_dir }}/{{ influxdb_settings.service }}
-    - source: salt://influxdb/templates/influxdb.service.jinja
-    - user: root
-    - group: root
-    - mode: 755
     - template: jinja
 
 influxdb_group:
@@ -86,6 +77,10 @@ influxdb_logrotate:
     - watch:
       - file: influxdb_log
 
+start_service:
+  cmd.run:
+    - name: "sleep 4;"
+
 influxdb_start:
   service.running:
     - name: {{ influxdb_settings.service }}
@@ -96,3 +91,5 @@ influxdb_start:
     - require:
       - pkg: influxdb_install
       - file: influxdb_config
+      - cmd: start_service
+

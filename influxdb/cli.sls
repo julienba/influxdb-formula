@@ -17,3 +17,13 @@ cli_gem:
     - name: influxdb-cli
     - require:
         - pkg: cli_dependencies
+
+
+python-pip:
+    pkg.installed
+
+influxdb-python:
+    pip.installed:
+        - name: influxdb
+        - require:
+            - pkg: python-pip

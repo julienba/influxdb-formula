@@ -24,6 +24,7 @@ reporting-disabled = false
 # logging level can be one of "fine", "debug", "info", "warn" or "error"
 level = "{{ influxdb_settings.logging.level }}"
 file  = "{{ influxdb_settings.logging.directory }}/influxdb.log"         # stdout to log to standard out
+#file = "/opt/influxdb/shared/log.txt"
 
 # Configure the admin server
 [admin]
