@@ -1,9 +1,16 @@
 influxdb:
   version: '0.8.5'
+  user: root
+  password: 'another password'
   bind-address: '0.0.0.0'
   logging:
     directory: '/var/log/influxdb'
     level: info
+  databases:                                                                                                                                                                                 
+    stats:                 
+      users:             
+        stats:         
+          password: stats
   admin:
     port: 8083
   api:

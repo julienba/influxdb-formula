@@ -29,7 +29,6 @@ influxdb_install:
     - watch:
       - cmd: influxdb_package
 
-
 influxdb_config:
   file.managed:
     - name: {{ influxdb_settings.config }}
@@ -77,9 +76,12 @@ influxdb_logrotate:
     - watch:
       - file: influxdb_log
 
+{#
+There are an issue influxdb is start right after being installed
+
 start_service:
   cmd.run:
-    - name: "sleep 4;"
+    - name: "sleep 20"
 
 influxdb_start:
   service.running:
@@ -92,4 +94,4 @@ influxdb_start:
       - pkg: influxdb_install
       - file: influxdb_config
       - cmd: start_service
-
+#}

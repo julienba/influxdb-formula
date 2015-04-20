@@ -24,6 +24,6 @@ python-pip:
 
 influxdb-python:
     pip.installed:
-        - name: influxdb
+        - name: influxdb == 0.4.1
         - require:
             - pkg: python-pip
